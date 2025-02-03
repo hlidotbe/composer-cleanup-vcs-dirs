@@ -12,10 +12,11 @@ class Command extends BaseCommand
     $this->setName('cleanup-vcs-dirs');
   }
 
-  protected function execute(InputInterface $input, OutputInterface $output) {
+  protected function execute(InputInterface $input, OutputInterface $output):int {
     $output->writeln('<info>Removing all child .git directories under the project directory</info>');
 
     $handler = new Handler($this->getComposer(), $this->getIO());
     $handler->cleanupVcsDirs(getcwd(), true);
+    return 0;
   }
 }
